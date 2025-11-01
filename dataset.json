@@ -1758,5 +1758,53 @@
   {
     "input": "Applications and Future Directions",
     "output": "WSD technology finds practical application across numerous domains:\nMachine Translation:Accurate sense identification improves translation quality by selecting appropriate target language equivalents for ambiguous source words.\nInformation Retrieval:Search engines employ WSD to better understand user query intent and retrieve more relevant documents.\nContent Analysis:Text processing systems benefit from precise word meanings for tasks such as sentiment analysis, topic modeling and document classification."
+  },
+  {
+    "input": "Use XGBoost in Regression",
+    "output": "XGBoost is particularly effective for regression problems due to:\nHandling Missing Values:Automatically handles missing data without requiring imputation.\nFeature Importance:Provides insight into which features impact predictions.\nScalability:Efficient on large datasets with GPU acceleration.\nEnsemble Learning:Combines multiple weak models to create a strong predictive model."
+  },
+  {
+    "input": "Loss Functions and Regularization",
+    "output": "XGBoost constructs its models by minimizing an objective function that balances two aspects:\nPrediction Accuracy —measured using a loss function\nModel Complexity —controlled via regularization\nFormally, the objective function is:\nWhere:\nL(y_i,\\hat y_i )quantifies the error between actual valuey_iand predicted value\\hat y_i.\n\\Omega(f_t)penalizes overly complex trees to avoid overfitting."
+  },
+  {
+    "input": "Loss Functions",
+    "output": "XGBoost supports multiple loss functions depending on the task:\n1. Regression (continuous target):\nThis is also referred to as squared error loss (\"reg:squarederror\" in XGBoost). It penalizes larger errors more heavily, which is suitable for regression tasks where extreme deviations matter.\n2. Binary Classification (0/1 target):\nThis is logistic loss (\"reg:logistic\") and is used when predictions are probabilities between 0 and 1."
+  },
+  {
+    "input": "Working in Regression",
+    "output": "1. During tree building, XGBoost calculates gain for each possible split:\n2. A split is accepted only if Gain > 0, ensuring that the split improves the model after considering regularization.\n3. Leaf weights are calculated as:\nThis shows how L2 regularization (λ) shrinks leaf weights and L1 (α) further encourages zero weights."
+  },
+  {
+    "input": "Step 1: Installation",
+    "output": "Lets install the XGBoost package,"
+  },
+  {
+    "input": "Step 2: Importing libraries and Dataset",
+    "output": "Here we will loadseabornandpandaslibrary. We will use the mpg dataset from Seaborn to show the working."
+  },
+  {
+    "input": "Step 3: Data Preprocessing",
+    "output": "We will convert categorical features into numerical values usingone-hot encoding."
+  },
+  {
+    "input": "Step 4: Splitting Data",
+    "output": "Split the data into training and testing sets where 70% data will be used for training and rest for testing."
+  },
+  {
+    "input": "Step 5: Training XGBoost Regressor",
+    "output": "We will train the XGBoost Regressor.\nOutput:"
+  },
+  {
+    "input": "Step 6: Hyperparameter Tuning",
+    "output": "We get optimized model performance withGridSearchCV.\nOutput:"
+  },
+  {
+    "input": "Step 7: Feature Plotting",
+    "output": "We will plot the top important features.\nOutput:"
+  },
+  {
+    "input": "Limitations",
+    "output": "Computationally intensive: Can be slow to train on very large datasets, especially with many trees.\nParameter tuning required:Requires careful tuning of hyperparameters (e.g., learning rate, max depth, number of estimators) for optimal performance.\nMemory consumption:Can use a lot of RAM for large datasets or deep trees.\nLess interpretable:Compared to linear regression, the final model is harder to interpret."
   }
 ]
