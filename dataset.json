@@ -1846,5 +1846,81 @@
   {
     "input": "Detection",
     "output": "This architecture divides the image into a grid of S*S size.\nIf the centre of the bounding box of the object is in that grid, then this grid is responsible for detecting that object.\nEach grid predicts bounding boxes with their confidence score.\nEach confidence score shows how accurate it is that the bounding box predicted contains an object and how precise it predicts the bounding box coordinates with respect to ground truth prediction.\nAt test time we multiply the conditional class probabilities and the individual box confidence predictions. We define our confidence score as follows :\nNote: the confidence score should be 0 when there is no object exists in the grid. If there is an object present in the image the confidence score should be equal to IoU between ground truth and predicted boxes. Each bounding box consists of 5 predictions: (x, y, w, h) and confidence score. The (x, y) coordinates represent the centre of the box relative to the bounds of the grid cell. The h, w coordinates represents height, width of bounding box relative to (x, y). The confidence score represents the presence of an object in the bounding box.\nThis results in combination of bounding boxes from each grid like this.\nEach grid also predicts C conditional class probability, Pr(Classi| Object).\nThis probability were conditional based on the presence of an object in grid cell. Regardless the number of boxes each grid cell predicts only one set of class probabilities. These prediction are encoded in the 3D tensor of size S * S * (5*B +C).\nNow, we multiply the conditional class probabilities and the individual box confidence predictions,\n\nThis gives us class-specific confidence scores for each box. These scores encode both the probability of that class appearing in the box and how well the predicted box fits the object. Then after we apply non-maximal suppression for suppressing the non max outputs (when a number of boxes are predicted for the same object). At last , our  final predictions are generated.\nYOLO is very fast at the test time because it uses only a single CNN architecture to predict results and class is defined in such a way that it treats classification as a regression problem."
+  },
+  {
+    "input": "PPO vs Earlier Methods",
+    "output": "Comparison of PPO with earlier policy gradient methods:"
+  },
+  {
+    "input": "Role of PPO in Generative AI",
+    "output": "Reasons for using PPO inGenerative AIare:"
+  },
+  {
+    "input": "Parameters in PPO",
+    "output": "Here are the main parameters in PPO:"
+  },
+  {
+    "input": "Mathematical Implementation",
+    "output": "Mathematical formulation and algorithm of PPO:"
+  },
+  {
+    "input": "1. Policy Update Rule",
+    "output": "PPO updates the agent’s policy using policy gradients adjusting it in the direction that maximizes the expected cumulative reward.\nUnlike standard policy gradient methods, it ensures updates are controlled and stable."
+  },
+  {
+    "input": "2. Surrogate Objective",
+    "output": "Instead of directly maximizing rewards, PPO maximizes a surrogate objective that measures improvement over the old policy:\nThis allows the algorithm to evaluate the benefit of new actions while referencing the old policy."
+  },
+  {
+    "input": "3. Clipping Mechanism",
+    "output": "Introduces a clip function to limit the probability ratio between new and old policies:\nPrevents excessively large policy updates that could destabilize learning."
+  },
+  {
+    "input": "4. Advantage Estimation",
+    "output": "Computes the advantageA_tto determine how much better or worse an action was compared to the expected value of the state.\nGuides the policy update by increasing the probability of better actions and decreasing that of worse actions."
+  },
+  {
+    "input": "Integrating PPO with Generative AI",
+    "output": "Ways to integrate PPO with Gen AI are:"
+  },
+  {
+    "input": "Working",
+    "output": "Workflow of PPO is mentioned below:"
+  },
+  {
+    "input": "Implementation",
+    "output": "Step by step implementation of PPO for Generative AI:"
+  },
+  {
+    "input": "Step 1: Import Libraries",
+    "output": "Importing libraries likeNumpy,TransformersandPytorchmodules."
+  },
+  {
+    "input": "Step 2: Environment Setup",
+    "output": "Setup device and model:Using GPU if available, loading GPT-2 model and tokenizer.\nPrepare tokenizer and move model:Setting padding token and moving model to device i.e. GPU or CPU.\nOptimizer:Using Adam optimizer for training."
+  },
+  {
+    "input": "Step 3: Training",
+    "output": "1. Prepare input and generate text:\nEncoding the prompt into tokens and send to device.\nLetting GPT-2 generate continuation up to 30 tokens.\nDecoding generated tokens to readable text.\n2. Compute probabilities:\nFeeding generated sequence back to GPT-2 to get logits.\nConverting logits to log probabilities of each token.\n3. Select log probs of generated tokens:Picking only the log probabilities for the generated words.\n4. Compute reward:\nBase reward = text length / 25 (max 1).\nBonus +0.5 if text contains “good” or “great”.\n5. Compute loss and update model:\nLoss = negative log-prob * reward which encourages high reward text.\nBackpropagating loss and step optimizer.\nReturning generated text and reward."
+  },
+  {
+    "input": "Step 4: Track Rewards",
+    "output": "Create PPO trainer:ppo = MiniPPO() initializes the model, tokenizer and optimizer.\nTraining loop:Running train_step 50 times to generate text and update the model.\nPrint progress:Every 10 steps, showing the generated text and its reward to see learning over time.\nOutput:"
+  },
+  {
+    "input": "Comparison with Other Policy Gradient Methods",
+    "output": "Comparison table of PPO with other RL algorithms:"
+  },
+  {
+    "input": "Applications",
+    "output": "Some of the applications of PPO are:"
+  },
+  {
+    "input": "Advantages",
+    "output": "Some of the advantages of PPO are:"
+  },
+  {
+    "input": "Disadvantages",
+    "output": "Some of the disadvantages of PPO are:"
   }
 ]
