@@ -3350,5 +3350,29 @@
   {
     "input": "Limitations",
     "output": "May require careful tuning of the type and level of noise added to the inputs for optimal performance.\nCan be less effective if the noise model used during training does not match the type of corruption seen in real-world data.\nHigh computational cost, especially with large datasets or deep architectures.\nLike other unsupervised methods, provide no guarantees that learned features will be directly useful for specific downstream supervised tasks."
+  },
+  {
+    "input": "Implementation",
+    "output": "Let's implement our model:"
+  },
+  {
+    "input": "Step 1: Install dependencies",
+    "output": "We will install the required dependencies for our model such as streamlit, google-generativeai."
+  },
+  {
+    "input": "Step 2: Set Up API Key",
+    "output": "We need to create a environment file named .env in project directory to store our API Key."
+  },
+  {
+    "input": "Step 3: Build the Model",
+    "output": "Now we will build our model:\nEnvironment Setup:The .env file stores the API key securely, loaded with dotenv.\nModel Initialization:The Gemini model \"models/gemini-2.5-flash\" is loaded using Google’s GenAI SDK.\nSession Management:st.session_state ensures chat history persists during interaction.\nReal-Time Interaction:Users type queries and responses are fetched dynamically from Gemini.\nAuto Refresh:st.rerun() refreshes the app interface after each user message."
+  },
+  {
+    "input": "Step 4: Run the Streamlit App",
+    "output": "We will start the Streamlit server and it will open our chatbot model in browser. The default URL is usually http://localhost:8501.\nOutput:"
+  },
+  {
+    "input": "Advantages",
+    "output": "Rapid Deployment:Streamlit makes it effortless to transform simple Python scripts into interactive web apps which is perfect for quick AI demos or prototypes.\nIntelligent AI Responses:Integrating Google Gemini ensures the model provides human-like, context-aware answers with exceptional reasoning and creativity.\nInteractive User Interface:Streamlit offers dynamic UI components like text inputs, buttons and markdowns to build engaging, chat-style AI interfaces.\nEasy Integration & Scalability:The architecture can be easily extended, allowing developers to connect databases, APIs or even train custom models for specialized tasks."
   }
 ]
