@@ -3530,5 +3530,9 @@
   {
     "input": "What's Better?",
     "output": "SSD, a single-shot detector for multiple classes that's quicker than the previous progressive for single-shot detectors (YOLO), and considerably a lot of correct, really as correct as slower techniques that perform express region proposals and pooling (including quicker R-CNN)"
+  },
+  {
+    "input": "References:",
+    "output": "An additional parameterl(dilation factor) tells how much the input is expanded. In other words, based on the value of this parameter,(l-1)pixels are skipped in the kernel.Fig 1depicts the difference between normal vs dilated convolution. In essence, normal convolution is just a1-dilated convolution.\nIntuition:\nDilated convolution helps expand the area of the input image covered without pooling. The objective is to cover more information from the output obtained with every convolution operation. This method offers a wider field of view at the same computational cost. We determine the value of the dilation factor(l)by seeing how much information is obtained with each convolution on varying values ofl.\nBy using this method, we are able to obtain more information without increasing the number of kernel parameters. InFig 1, the image on the left depicts dilated convolution. On keeping the value ofl = 2,we skip 1 pixel (l - 1pixel) while mapping the filter onto the input, thus covering more information in each step.\nFormula Involved:\n(F_{*l}k)(p) = \\sum_{(s +lt = p)} F(s) k(t)\nAdvantages of Dilated Convolution:\nUsing this method rather than normal convolution is better as:\nCode Implementation:\nOutput\nThe following output is obtained from the above code.\n\nThe output obtained is for a dilation factor of 3. For more experimentation, you can initialize the dilated_kernel with different values of the Dilation factor and observe the changes in the output obtained."
   }
 ]
