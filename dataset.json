@@ -3518,5 +3518,17 @@
   {
     "input": "Key Differences Between ANNs and BNNs",
     "output": "BNNs:Composed of biological structures like dendrites and axons, with complex behavior and signal processing abilities.\nANNs:Use simplified models of neurons with a single output, focusing on numerical signal transformations through activation functions.\nBNNs:Adapts based on learning, experience and environmental factors.\nANNs:Use fixed mathematical weights that are adjusted during training but remain static during testing.\nBNNs:Feature a highly complex web of adaptable pathways influenced by learning and memory.\nANNs:Have predefined pathways determined by network architecture and model design.\nBiological Neural Networks are flexible and capable of real-time learning. In contrast, Artificial Neural Networks are simplified, task-specific systems that prioritize speed and precision. The aim of ongoing research is to draw insights from brain to make artificial systems more adaptive and intelligent."
+  },
+  {
+    "input": "YOLO",
+    "output": "It works solely on appearance at the image once to sight multiple objects. Thus, it's referred to as YOLO, you merely Look Once. By simply gazing at the image once, the detection speed is in period (45 fps). Quick YOLOv1 achieves a hundred and fifty-five FPS. this is often another progressive deep learning object detection approach that has been printed in 2016 CVPR with quite 2000 citations. Yolo divides the image into a grid. For each grid, some values like class probabilities and the bounding box parameters are calculated.\nYOLO struggles to localize objects properly compared with quick R-CNN.YOLO has fewer background errors. quick R-CNN has thirteen.6% that the highest detections square measure false positive.\nAs YOLO and quick R-CNN have their execs and cons, they'll be combined to own higher accuracy. Artwork and natural pictures square measure terribly completely different on a per-level however they're similar in terms of the dimensions and form of objects, so YOLO will still predict smart bounding boxes and detections."
+  },
+  {
+    "input": "SSD",
+    "output": "By victimization SSD, we tend to solely have to be compelled to take one single shot to sight multiple objects inside the image, whereas regional proposal network (RPN) primarily based approaches like R-CNN series want 2 shots, one for generating region proposals, one for police work the article of every proposal. Thus, SSD is way quicker compared with two-shot RPN-based approaches. SSD not only uses one grid, but a combination of different sizes to better detect objects at any size.\nSSD, a single-shot detector for multiple classes that's quicker than the previous progressive for single-shot detectors (YOLO), and considerably a lot of correct, really as correct as slower techniques that perform express region proposals and pooling (including quicker R-CNN)."
+  },
+  {
+    "input": "What's Better?",
+    "output": "SSD, a single-shot detector for multiple classes that's quicker than the previous progressive for single-shot detectors (YOLO), and considerably a lot of correct, really as correct as slower techniques that perform express region proposals and pooling (including quicker R-CNN)"
   }
 ]
