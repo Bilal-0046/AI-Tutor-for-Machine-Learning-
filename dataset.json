@@ -3534,5 +3534,33 @@
   {
     "input": "References:",
     "output": "An additional parameterl(dilation factor) tells how much the input is expanded. In other words, based on the value of this parameter,(l-1)pixels are skipped in the kernel.Fig 1depicts the difference between normal vs dilated convolution. In essence, normal convolution is just a1-dilated convolution.\nIntuition:\nDilated convolution helps expand the area of the input image covered without pooling. The objective is to cover more information from the output obtained with every convolution operation. This method offers a wider field of view at the same computational cost. We determine the value of the dilation factor(l)by seeing how much information is obtained with each convolution on varying values ofl.\nBy using this method, we are able to obtain more information without increasing the number of kernel parameters. InFig 1, the image on the left depicts dilated convolution. On keeping the value ofl = 2,we skip 1 pixel (l - 1pixel) while mapping the filter onto the input, thus covering more information in each step.\nFormula Involved:\n(F_{*l}k)(p) = \\sum_{(s +lt = p)} F(s) k(t)\nAdvantages of Dilated Convolution:\nUsing this method rather than normal convolution is better as:\nCode Implementation:\nOutput\nThe following output is obtained from the above code.\n\nThe output obtained is for a dilation factor of 3. For more experimentation, you can initialize the dilated_kernel with different values of the Dilation factor and observe the changes in the output obtained."
+  },
+  {
+    "input": "How Dimensionality Reduction Works?",
+    "output": "Lets understand how dimensionality Reduction is used with the help of example. Imagine a dataset where each data point exists in a 3D space defined by axes X, Y and Z. If most of the data variance occurs along X and Y then the Z-dimension may contribute very little to understanding the structure of the data.\nBefore Reduction we can see that data exist in 3D (X,Y,Z). It has high redundancy and Z contributes little meaningful information\nOn the right after reducing the dimensionality the data is represented in lower-dimensional spaces. The top plot (X-Y) maintains the meaningful structure while the bottom plot (Z-Y) shows that the Z-dimension contributed little useful information.\nThis process makes data analysis more efficient hence improving computation speed and visualization while minimizing redundancy"
+  },
+  {
+    "input": "Dimensionality Reduction Techniques",
+    "output": "Dimensionality reduction techniques can be broadly divided into two categories:"
+  },
+  {
+    "input": "1. Feature Selection",
+    "output": "Feature selectionchooses the most relevant features from the dataset without altering them. It helps remove redundant or irrelevant features, improving model efficiency. Some common methods are:\nFilter methodsrank the features based on their relevance to the target variable.\nWrapper methodsuse the model performance as the criteria for selecting features.\nEmbedded methodscombine feature selection with the model training process."
+  },
+  {
+    "input": "2. Feature Extraction",
+    "output": "Feature extractioninvolves creating new features by combining or transforming the original features. These new features retain most of the dataset’s important information in fewer dimensions. Common feature extraction methods are:"
+  },
+  {
+    "input": "Real World Use Case",
+    "output": "Dimensionality reduction plays a important role in many real-world applications such as text categorization, image retrieval, gene expression analysis and more. Here are a few examples:"
+  },
+  {
+    "input": "Advantages",
+    "output": "As seen earlier high dimensionality makes models inefficient. Let's now summarize the key advantages of reducing dimensionality.\nFaster Computation: With fewer features machine learning algorithms can process data more quickly. This results in faster model training and testing which is particularly useful when working with large datasets.\nBetter Visualization: As we saw in the earlier figure reducing dimensions makes it easier to visualize data and reveal hidden patterns.\nPrevent Overfitting: With few features models are less likely to memorize the training data and overfit. This helps the model generalize better to new, unseen data improve its ability to make accurate predictions."
+  },
+  {
+    "input": "Disadvantages",
+    "output": "Data Loss & Reduced Accuracy:Some important information may be lost during dimensionality reduction and affect model performance.\nChoosing the Right Components:Deciding how many dimensions to keep is difficult as keeping too few may lose valuable information while keeping too many can led to overfitting."
   }
 ]
