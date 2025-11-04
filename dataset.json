@@ -6442,5 +6442,57 @@
   {
     "input": "Limitations of Self-Supervised Learning",
     "output": "Quality of Supervision Signal: The automatically generated labels (pseudo-labels) can be noisy or incomplete, leading to lower accuracy compared to supervised learning.\nTask Restrictions: Less effective for highly complex or unstructured data where meaningful pretext tasks are difficult to design.\nTraining Complexity: SSL methods like contrastive learning require careful design, tuning and more computational resources.\nHigh Computational Cost: Training SSL models often demands significant computation power and time, especially on large datasets."
+  },
+  {
+    "input": "Importance of Self-Training",
+    "output": "Self-Training is popular because of its simplicity and effectiveness. It requires no modifications to existing machine learning algorithms and can be implemented with minimal effort. Key benefits include:\nUtilization of Unlabeled Data:Leverages large volumes of unlabeled data to improve model generalization.\nDomain Independence:Works across various domains and tasks.\nEfficiency:Can reduce the need for extensive manual labeling."
+  },
+  {
+    "input": "Self - Training Works in Practice",
+    "output": "To illustrate Self-Training, consider a binary classification task:\nA small subset of the data is labeled (e.g., 10% of the dataset).\nAlogistic regressionmodel is trained on this labeled data.\nThe model is used to predict labels for the remaining unlabeled data.\nHigh-confidence predictions (e.g., those with probabilities above 95%) are added to the training set.\nThe model is retrained with the expanded dataset, and the process repeats."
+  },
+  {
+    "input": "Implementation of Self-Training in Python",
+    "output": "Below is a step-by-step implementation ofself-trainingusing aRandom Forest classifier. The process involves training a model on a small set of labeled data, making predictions on unlabeled data, and iteratively adding high-confidence predictions to the labeled dataset."
+  },
+  {
+    "input": "Step 1: Import Necessary Libraries",
+    "output": "We begin by importing essential libraries required for dataset creation, model training, and evaluation. We useNumPyfor numerical operations and dataset generation, along with machine learning tools fromsklearn."
+  },
+  {
+    "input": "Step 2: Generate and Split the Dataset",
+    "output": "A synthetic dataset is created with 1000 samples, 20 features, and 2 classes (binary classification). The first 100 samples are treated as labeled data, while the remaining 900 samples are considered unlabeled, containing only features without labels. The unlabeled data is further split into a separate test set to evaluate the model later."
+  },
+  {
+    "input": "Step 3:Initialize and Train the Model",
+    "output": "Random Forest Classifieris initialized, an ensemble-based model that constructs multiple decision trees during training. It is known for its robustness in classification tasks and ability to handle non-linearity effectively.\nOutput:"
+  },
+  {
+    "input": "Step 4: Perform Self-Training Iterations",
+    "output": "Self-training process is performed over five iterations.\nIn each iteration, the model generates pseudo-labels for the unlabeled data and calculates confidence scores for its predictions.\nSamples with high-confidence predictions are added to the labeled dataset, while those with lower confidence remain unlabeled.\nThe model is then retrained on the expanded labeled dataset, progressively improving its performance."
+  },
+  {
+    "input": "Step 5: Evaluate the Model",
+    "output": "Once self-training is complete, the model is evaluated on a separate test set. The accuracy score is computed to measure the effectiveness of the self-training approach. This step ensures that the model generalizes well to unseen data.\nOutput"
+  },
+  {
+    "input": "Complete Code:",
+    "output": "Output\nThe model achieves an accuracy of 87.5% on the test set after 5 iterations of self-training. This means that the model correctly classified 87.5 percent of the samples in the test set."
+  },
+  {
+    "input": "Comparison with Other Semi-Supervised Learning Methods",
+    "output": "Self-Training vs. Co-Training:Co-Training uses two models with complementary views of the data, while Self-Training uses a single model.\nSelf-Training vs. Graph-Based Methods:Graph-based methods rely on data structure and relationships, while Self-Training operates directly on feature representations.\nSelf-Training vs. Generative Models:Generative models (e.g., Variational Autoencoders) focus on learning data distributions, whereas Self-Training directly enhances classification tasks."
+  },
+  {
+    "input": "Applications of Self-Training",
+    "output": "Self-Training has been successfully applied in several fields:\nNatural Language Processing (NLP):Text classification, sentiment analysis, and question answering.\nComputer Vision:Image recognition and object detection.\nHealthcare:Medical diagnosis and imaging analysis.\nSpeech Processing:Speaker recognition and voice activity detection.\nBenefits and Challenges"
+  },
+  {
+    "input": "Benefits of Self-Training",
+    "output": "Cost Efficiency:Requires minimal labeled data.\nFlexibility:Can be applied to various models and tasks.\nSimplicity:Easy to implement with standard machine learning libraries."
+  },
+  {
+    "input": "Challenges of Self-Training",
+    "output": "Error Amplification:Incorrect pseudo-labels may degrade performance over iterations.\nConfidence Thresholding:Selecting a proper confidence threshold is non-trivial.\nImbalanced Datasets:Models may propagate bias in imbalanced datasets."
   }
 ]
