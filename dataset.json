@@ -4906,5 +4906,29 @@
   {
     "input": "Felzenszwalb's Segmentation",
     "output": "Felsenszwalb's efficient graph-based picture segmentation is computed. It produces an over-segmentation of an RGB picture on the image grid using a quick, minimal spanning tree-based clustering. This may be used to isolate features and identify edges. This algorithm uses the Euclidean distance between pixels. skimage.segmentation.felzenszwalb() function is used to compute Felsenszwalb’s efficient graph-based image segmentation.\nCode:\nOutput:\nExplanation:Using a rapid, minimal tree structure-based clustering on the picture grid, creates an over-segmentation of a multichannel image. The parameter scale determines the level of observation. Less and larger parts are associated with a greater scale. The diameter of a Gaussian kernel is sigma, which is used to smooth the picture before segmentation. Scale is the sole way to control the quantity of generated segments as well as their size. The size of individual segments within a picture might change dramatically depending on local contrast.\nThere are many other supervised and unsupervised image segmentation techniques. This can be useful in confining individual features, foreground isolation, noise reduction, and can be useful to analyze an image more intuitively. It is a good practice for images to be segmented before building a neural network model in order to yield effective results."
+  },
+  {
+    "input": "Impact of Learning Rate on Model",
+    "output": "The learning rate is a critical hyperparameter that directly affects how a model learns during training by controlling the magnitude of weight updates. Its value significantly affects both convergence speed and model performance.\nLow Learning Rate:\nLeads to slow convergence\nRequires more training epochs\nCan improve accuracy but increases computation time\nHigh Learning Rate:\nSpeeds up training\nRisks of overshooting optimal weights\nMay cause instability or divergence of the loss function\nOptimal Learning Rate:\nBalances training speed and model accuracy\nEnsures stable convergence without excessive training time\nBest Practices:\nFine-tune the learning rate based on the task and model\nUse techniques likelearning rate schedulingoradaptive optimizersto improve performance and stability\nIdentifying the ideal learning rate can be challenging but is important for improving performance without wasting resources."
+  },
+  {
+    "input": "1.Fixed Learning Rate",
+    "output": "A constant learning rate is maintained throughout training.\nSimple to implement and commonly used in basic models.\nIts limitation is that it lacks the ability to adapt on different training phases which may create sub optimal results."
+  },
+  {
+    "input": "2.Learning Rate Schedules",
+    "output": "These techniques reduce the learning rate over time based on predefined rules to improve convergence:\nStep Decay: Reduces the learning rate by a fixed factor at set intervals (every few epochs).\nExponential Decay: Continuously decreases the learning rate exponentially over training time.\nPolynomial Decay: Learning rate decays polynomially, offering smoother transitions compared to step or exponential methods."
+  },
+  {
+    "input": "3.Adaptive Learning Rate Methods",
+    "output": "Adaptive methods adjust the learning rate dynamically based on gradient information, allowing better updates per parameter:\nAdaGrad:AdaGradadapts the learning rate per parameter based on the squared gradients. It is effective for sparse data but may decay too quickly.\nRMSprop:RMSpropbuilds on AdaGrad by using a moving average of squared gradients to prevent aggressive decay.\nAdam (Adaptive Moment Estimation):Adamcombines RMSprop with momentum to provide stable and fast convergence; widely used in practice."
+  },
+  {
+    "input": "4.Cyclic Learning Rate",
+    "output": "The learning rate oscillates between a minimum and maximum value in a cyclic manner throughout training.\nIt increases and then decreases the learning rate linearly in each cycle.\nBenefits include better exploration of the loss surface and leading to faster convergence."
+  },
+  {
+    "input": "5.Decaying Learning Rate",
+    "output": "Gradually reduces the learning rate as training progresses.\nHelps the model take more precise steps towards the minimum. This improves stability in later epochs.\nAchieving an optimal learning rate is essential as too low results in long training times while too high can lead to model instability. By using various techniques we optimize the learning process, ensuring accurate predictions without unnecessary resource expenses."
   }
 ]
