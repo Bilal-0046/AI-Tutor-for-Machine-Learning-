@@ -4850,5 +4850,17 @@
   {
     "input": "References:",
     "output": "NYU slides\nOpenCV K-means"
+  },
+  {
+    "input": "Step 1: Install Required Libraries",
+    "output": "In the first step we load required libraries likeNumpy,MatplotlibandOpenCV.We'll start by reading the image and displaying it. You can download the image fromhere.\nOutput:"
+  },
+  {
+    "input": "Step 2: Reshape the Image for K-Means Clustering",
+    "output": "K-Means works on 2D data but images are in 3D i.e height, width, color channels. So we need toreshapethe image into a 2D array."
+  },
+  {
+    "input": "Step 3: Apply K-Means Clustering and Segment the Image",
+    "output": "Now let's apply theK-Means clusteringalgorithm to segment the image into distinct regions based on color.\nFirst set the criteria for when the algorithm should stop.\nWe’ll use a maximum of100 iterationsor anaccuracy thresholdof85%.\nWe will choosek = 3which means the algorithm will identify3 clustersin the image.\nK-Means will group pixels with similar colors into the specified number of clusters.\nFinally we reshape the segmented data to match the original dimensions of the image so it can be visualized properly.\nOutput:\n\nNow if we change the value ofk to 6we get the below image\n\nAs you can see with an increase in the value of k the image becomes clearer and distinct because K-means algorithm can classify more classes or cluster of colors. It can segment objects in images and give better results in smaller dataset. But when it is applied on large datasets it becomes time consuming."
   }
 ]
