@@ -8394,5 +8394,17 @@
   {
     "input": "Limitations and Considerations",
     "output": "While RoBERTa improves on BERT in several ways it still shares some limitations:\nComputational Cost: Training RoBERTa requires significant GPU resources which can be a barrier for small teams or low-power environments.\nLack of Sentence-Level Understanding: Removing NSP may affect tasks that involve reasoning across multiple sentences.\nData Bias:Like most large language models, RoBERTa can reflect biases present in the training data.\nDespite these challenges, RoBERTa remains a robust and widely used model in modern NLP systems.\nRoBERTa is an example of how training strategies can significantly affect the performance of deep learning models, even without architectural changes. By optimizing BERT's original pretraining procedure, it achieves higher accuracy and improved language understanding across a wide range of NLP tasks."
+  },
+  {
+    "input": "Inspiration of the algorithm",
+    "output": "Particle Swarm Optimization (PSO) is a powerful meta-heuristic optimization algorithm and inspired by swarm behavior observed in nature such as fish and bird schooling.  PSO is a Simulation of a simplified social system. The original intent of PSO algorithm was to graphically simulate the graceful but unpredictable choreography of a bird flock.\nIn nature, any of the bird’s observable vicinity is limited to some range. However, having more than one birds allows all the birds in a swarm to be aware of the larger surface of a fitness function.\nLet’s mathematically model, the above-mentioned principles to make the swarm find the global minima of a fitness function"
+  },
+  {
+    "input": "Mathematical model",
+    "output": "Each particle in particle swarm optimization has an associated position, velocity, fitness value.\nEach particle keeps track of the particle_bestFitness_value particle_bestFitness_position.\nA record of global_bestFitness_position and global_bestFitness_value is maintained."
+  },
+  {
+    "input": "Algorithm",
+    "output": "Parameters of problem:\nNumber of dimensions (d)\nLower bound (minx)\nUpper bound (maxx)\nHyperparameters of the algorithm:\nNumber of particles (N)\nMaximum number of iterations (max_iter)\nInertia (w)\nCognition of particle (C1)\nSocial influence of swarm (C2)\nAlgorithm:\nAdvantages of PSO:\nDisadvantages of PSO:"
   }
 ]
