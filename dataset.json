@@ -8562,5 +8562,17 @@
   {
     "input": "Conclusion",
     "output": "Probability Density and Maximum Likelihood Estimation (MLE) are essential tools for effectively analyzing and interpreting continuous data. The Probability Density Function (PDF) offers a clear visualization of how data points are distributed, while maximum likelihood estimation provides a robust method for estimating the parameters that best describe that distribution. Together, these tools empower statisticians and data scientists to build accurate models, make informed predictions, and draw meaningful insights from complex datasets."
+  },
+  {
+    "input": "sklearn.datasets.make_blobs",
+    "output": "Output:"
+  },
+  {
+    "input": "sklearn.datasets.make_moon",
+    "output": "Output:"
+  },
+  {
+    "input": "sklearn.datasets.make_circle",
+    "output": "Output:\nScikit-learn (sklearn) is a popular machine learning library for Python that provides a wide range of functionalities, including data generation. In order to create test datasets using Sklearn, you can use the following code:"
   }
 ]
