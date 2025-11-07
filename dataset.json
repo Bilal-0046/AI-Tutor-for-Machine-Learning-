@@ -8706,5 +8706,13 @@
   {
     "input": "Disadvantages",
     "output": "By mastering polynomial regression, we can better model complex data patterns which leads to more accurate predictions and valuable insights across various fields."
+  },
+  {
+    "input": "How Does KNNImputer Work?",
+    "output": "TheKNNImputerworks by finding the k-nearest neighbors (based on a specified distance metric) for the data points with missing values. It then imputes the missing values using the mean or median (depending on the specified strategy) of the neighboring data points. The key advantage of this approach is that it preserves the relationships between features, which can lead to better model performance.\nFor example, consider a dataset with a missing value in a column representing a student’s math score. Instead of simply filling this missing value with the overall mean or median of the math scores,KNNImputerfinds the k-nearest students (based on other features like scores in physics, chemistry, etc.) and imputes the missing value using the mean or median of these neighbors' math scores.\nIt is implemented by theKNNimputer()method which contains the following arguments:\nCode: Python code to illustrate KNNimputor class\nOutput:\nNote:After transforming the data becomes anumpyarray."
+  },
+  {
+    "input": "Conclusion",
+    "output": "KNNImputerin Scikit-Learn is a powerful tool for handling missing data, offering a more sophisticated alternative to traditional imputation methods. By leveraging the relationships between features, it provides more accurate imputations that can lead to better model performance. However, it is essential to be mindful of its computational demands and sensitivity to outliers. When used appropriately,KNNImputercan significantly enhance yourdata preprocessingpipeline, leading to more robust and reliable machine-learning models."
   }
 ]
