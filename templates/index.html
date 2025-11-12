@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ML Tutor Pro - Professional AI Learning Platform</title>
+    <title>ML Tutor Pro - Chat Interface</title>
 
     <!-- React and ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -64,21 +64,6 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
         @keyframes rotate360 {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -92,22 +77,8 @@
             animation: slideIn 0.3s ease-out;
         }
 
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .animate-pulse {
-            animation: pulse 2s ease-in-out infinite;
-        }
-
         .animate-rotate {
             animation: rotate360 20s linear infinite;
-        }
-
-        .shimmer {
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s linear infinite;
         }
 
         /* Gradient text */
@@ -137,78 +108,15 @@
         .hover-glow:hover {
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
-
-        /* Progress bar animation */
-        .progress-bar {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            animation: shimmer 1.5s linear infinite;
-        }
-
-        /* Page transitions */
-        .page-enter {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .page-enter-active {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 300ms, transform 300ms;
-        }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
+    <!-- React App -->
     <script type="text/babel">
+    {% raw %}
         const { useState, useEffect, useRef, useCallback } = React;
-
-        // Refactored into smaller components for better maintainability and professional structure
-        // Added memoization, callbacks, and improved state management
-        // Enhanced with search functionality for courses, theme toggle (dark/light), and better responsiveness
-        // Used React Context for theme management to demonstrate advanced patterns
-        // Improved error handling in login, added debounce for chat input, and more animations
-
-        const ThemeContext = React.createContext();
-
-        const userData = {
-            name: 'Alex Johnson',
-            avatar: 'AJ',
-            role: 'ML Engineer',
-            completedLessons: 24,
-            totalLessons: 48,
-            streak: 7,
-            points: 3420,
-            studyTime: 48
-        };
-
-        const courses = [
-            { id: 1, title: 'Supervised Learning', level: 'Pro', icon: '🎯', color: 'from-blue-600 to-cyan-600', rating: 4.8, enrolled: 1234, instructor: 'Dr. Sarah', progress: 75 },
-            { id: 2, title: 'Deep Learning', level: 'Advanced', icon: '🧠', color: 'from-purple-600 to-pink-600', rating: 4.9, enrolled: 2156, instructor: 'Prof. Zhang', progress: 45 },
-            { id: 3, title: 'NLP & Transformers', level: 'Expert', icon: '💬', color: 'from-green-600 to-emerald-600', rating: 4.7, enrolled: 987, instructor: 'Dr. Park', progress: 30 },
-            // Added more courses for demonstration
-            { id: 4, title: 'Computer Vision', level: 'Advanced', icon: '👁️', color: 'from-red-600 to-orange-600', rating: 4.6, enrolled: 1456, instructor: 'Dr. Lee', progress: 20 },
-            { id: 5, title: 'Reinforcement Learning', level: 'Expert', icon: '🤖', color: 'from-indigo-600 to-violet-600', rating: 4.9, enrolled: 789, instructor: 'Prof. Smith', progress: 10 }
-        ];
-
-        const skills = [
-            { name: 'Supervised Learning', level: 85 },
-            { name: 'Deep Learning', level: 72 },
-            { name: 'NLP', level: 68 },
-            { name: 'Computer Vision', level: 75 },
-            { name: 'MLOps', level: 60 }
-        ];
 
         const debounce = (func, delay) => {
             let timer;
@@ -218,538 +126,151 @@
             };
         };
 
-        const LoginForm = React.memo(({ onLogin, isLogin }) => {
-            const [email, setEmail] = useState('');
-            const [password, setPassword] = useState('');
-            const [showPassword, setShowPassword] = useState(false);
-            const [error, setError] = useState('');
-
-            const handleSubmit = useCallback(() => {
-                if (!email || !password) {
-                    setError('Please fill in all fields');
-                    return;
+        const MLTutorChat = () => {
+            const [messages, setMessages] = useState([
+                {
+                    role: 'bot',
+                    content: 'Hello! I\'m your ML Tutor. Ask me anything about Machine Learning, Deep Learning, NLP, Computer Vision, or any ML-related topic!'
                 }
-                onLogin();
-            }, [email, password, onLogin]);
-
-            return (
-                <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white flex items-center justify-center p-4">
-                    <div className="w-full max-w-md animate-fadeIn">
-                        <div className="text-center mb-8">
-                            <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float hover-scale">
-                                <i className="lucide-brain text-5xl"></i>
-                            </div>
-                            <h1 className="text-4xl font-bold mb-2 gradient-text">ML Tutor Pro</h1>
-                            <p className="text-gray-400">Professional AI Learning</p>
-                        </div>
-
-                        <div className="p-8 rounded-2xl glass hover-glow transition-all duration-300">
-                            <div className="space-y-4">
-                                {error && <p className="text-red-400 text-center">{error}</p>}
-                                <div className="animate-slideIn">
-                                    <label className="block text-sm mb-2">Email</label>
-                                    <div className="relative">
-                                        <i className="lucide-mail absolute left-3 top-3.5 text-gray-400"></i>
-                                        <input
-                                            type="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            placeholder="your@email.com"
-                                            className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-all"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="animate-slideIn" style={{animationDelay: '0.1s'}}>
-                                    <label className="block text-sm mb-2">Password</label>
-                                    <div className="relative">
-                                        <i className="lucide-lock absolute left-3 top-3.5 text-gray-400"></i>
-                                        <input
-                                            type={showPassword ? 'text' : 'password'}
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            onKeyPress={(e) => e.key === 'Enter' && handleSubmit()}
-                                            placeholder="••••••••"
-                                            className="w-full pl-10 pr-12 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-all"
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => setShowPassword(!showPassword)}
-                                            className="absolute right-3 top-3.5 text-gray-400 hover:text-white transition-colors"
-                                        >
-                                            <i className={showPassword ? 'lucide-eye-off' : 'lucide-eye'}></i>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <button
-                                    onClick={handleSubmit}
-                                    className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 font-semibold transition-all hover-scale"
-                                    style={{animationDelay: '0.2s'}}
-                                >
-                                    {isLogin ? 'Login' : 'Create Account'}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        });
-
-        const Header = React.memo(({ activeSection, setActiveSection, setIsLoggedIn, theme, toggleTheme }) => (
-            <header className="border-b border-white/10 bg-black/30 backdrop-blur-xl sticky top-0 z-50 animate-slideIn">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center space-x-3">
-                            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center animate-rotate">
-                                <i className="lucide-brain text-2xl"></i>
-                            </div>
-                            <div>
-                                <h1 className="text-lg sm:text-xl font-bold">ML Tutor Pro</h1>
-                                <p className="text-xs text-gray-400 hidden sm:block">Professional Learning</p>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center space-x-3">
-                            <button className="relative p-2 rounded-lg hover:bg-white/10 transition-all">
-                                <i className="lucide-bell"></i>
-                                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                            </button>
-                            <button onClick={toggleTheme} className="p-2 rounded-lg hover:bg-white/10 transition-all">
-                                <i className={theme === 'dark' ? 'lucide-sun' : 'lucide-moon'}></i>
-                            </button>
-                            <div className="flex items-center space-x-3 pl-3 border-l border-white/10">
-                                <div className="text-right hidden sm:block">
-                                    <div className="text-sm font-semibold">{userData.name}</div>
-                                    <div className="text-xs text-gray-400">{userData.role}</div>
-                                </div>
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center font-bold hover-scale">
-                                    {userData.avatar}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <nav className="flex flex-wrap gap-2">
-                        {[
-                            { id: 'dashboard', label: 'Dashboard', icon: 'bar-chart-3' },
-                            { id: 'learning', label: 'Learning', icon: 'book-open' },
-                            { id: 'progress', label: 'Progress', icon: 'trending-up' },
-                            { id: 'chat', label: 'AI Tutor', icon: 'message-square' },
-                            { id: 'profile', label: 'Profile', icon: 'user' }
-                        ].map(item => (
-                            <button
-                                key={item.id}
-                                onClick={() => setActiveSection(item.id)}
-                                className={`px-3 sm:px-4 py-2 rounded-lg transition flex items-center space-x-2 text-sm hover-scale ${
-                                    activeSection === item.id ? 'bg-gradient-to-r from-blue-600 to-purple-600' : 'text-gray-400 hover:bg-white/5'
-                                }`}
-                            >
-                                <i className={`lucide-${item.icon}`}></i>
-                                <span className="hidden sm:inline">{item.label}</span>
-                            </button>
-                        ))}
-                        <button
-                            onClick={() => setIsLoggedIn(false)}
-                            className="ml-auto px-3 sm:px-4 py-2 rounded-lg text-gray-400 hover:text-red-400 hover:bg-white/5 transition flex items-center space-x-2 text-sm"
-                        >
-                            <i className="lucide-log-out"></i>
-                            <span className="hidden sm:inline">Logout</span>
-                        </button>
-                    </nav>
-                </div>
-            </header>
-        ));
-
-        const Dashboard = React.memo(({ setActiveSection, setSelectedCourse, animateStats }) => {
-            const [searchTerm, setSearchTerm] = useState('');
-
-            const filteredCourses = courses.filter(c => c.title.toLowerCase().includes(searchTerm.toLowerCase()));
-
-            return (
-                <div className="space-y-6 sm:space-y-8 animate-fadeIn">
-                    <div>
-                        <h2 className="text-2xl sm:text-3xl font-bold mb-2">Welcome back, Alex! 👋</h2>
-                        <p className="text-gray-400">Continue your ML journey</p>
-                    </div>
-
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-                        {[
-                            { icon: 'award', value: userData.points, label: 'Points', color: 'from-blue-600 to-blue-800' },
-                            { icon: 'check-circle', value: `${userData.completedLessons}/${userData.totalLessons}`, label: 'Lessons', color: 'from-purple-600 to-purple-800' },
-                            { icon: 'flame', value: userData.streak, label: 'Streak', color: 'from-orange-600 to-orange-800' },
-                            { icon: 'clock', value: `${userData.studyTime}h`, label: 'Study Time', color: 'from-green-600 to-green-800' }
-                        ].map((stat, index) => (
-                            <div
-                                key={index}
-                                className={`p-4 sm:p-6 rounded-2xl bg-gradient-to-br ${stat.color} relative overflow-hidden hover-scale hover-glow transition-all animate-slideIn`}
-                                style={{animationDelay: `${index * 0.1}s`}}
-                            >
-                                <div className="shimmer absolute inset-0"></div>
-                                <i className={`lucide-${stat.icon} text-3xl mb-3`}></i>
-                                <div className="text-2xl sm:text-3xl font-bold mb-1 relative z-10">{stat.value}</div>
-                                <div className="text-white/80 text-xs sm:text-sm relative z-10">{stat.label}</div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div>
-                        <div className="flex justify-between items-center mb-4">
-                            <h3 className="text-xl sm:text-2xl font-bold">Your Courses</h3>
-                            <input
-                                type="text"
-                                placeholder="Search courses..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 focus:border-blue-500 focus:outline-none text-white placeholder-gray-500 transition-all w-48 sm:w-64"
-                            />
-                        </div>
-                        <div className="space-y-4">
-                            {filteredCourses.map((c, index) => (
-                                <div
-                                    key={c.id}
-                                    className="p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-white/30 transition-all hover-scale animate-slideIn"
-                                    style={{animationDelay: `${index * 0.1 + 0.3}s`}}
-                                >
-                                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                                        <div className="flex items-center space-x-4 flex-1 w-full">
-                                            <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${c.color} flex items-center justify-center text-2xl hover-scale`}>
-                                                {c.icon}
-                                            </div>
-                                            <div className="flex-1">
-                                                <div className="flex items-center flex-wrap gap-2 mb-1">
-                                                    <h4 className="text-base sm:text-lg font-bold">{c.title}</h4>
-                                                    <span className="px-2 py-0.5 rounded-full bg-white/10 text-xs">{c.level}</span>
-                                                </div>
-                                                <p className="text-xs sm:text-sm text-gray-400 mb-2">By {c.instructor}</p>
-                                                <div className="flex items-center flex-wrap gap-3 text-xs text-gray-500 mb-2">
-                                                    <span className="flex items-center"><i className="lucide-star text-yellow-400 mr-1"></i>{c.rating}</span>
-                                                    <span className="flex items-center"><i className="lucide-users mr-1"></i>{c.enrolled}</span>
-                                                </div>
-                                                <div>
-                                                    <div className="flex justify-between text-xs mb-1">
-                                                        <span className="text-gray-400">Progress</span>
-                                                        <span className="text-blue-400 font-semibold">{c.progress}%</span>
-                                                    </div>
-                                                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                                                        <div
-                                                            className={`h-full bg-gradient-to-r ${c.color} progress-bar transition-all duration-1000 ease-out`}
-                                                            style={{
-                                                                width: animateStats ? `${c.progress}%` : '0%',
-                                                                transitionDelay: `${index * 0.2}s`
-                                                            }}
-                                                        ></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button
-                                            onClick={() => {
-                                                setSelectedCourse(c);
-                                                setActiveSection('learning');
-                                            }}
-                                            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 transition font-semibold hover-scale"
-                                        >
-                                            Continue →
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                            {filteredCourses.length === 0 && <p className="text-center text-gray-400">No courses found</p>}
-                        </div>
-                    </div>
-                </div>
-            );
-        });
-
-        const Learning = React.memo(({ selectedCourse, setActiveSection }) => {
-            const [codeOutput, setCodeOutput] = useState('');
-            const [isRunning, setIsRunning] = useState(false);
-
-            const runCode = useCallback(() => {
-                setIsRunning(true);
-                setCodeOutput('');
-                setTimeout(() => {
-                    setCodeOutput('Network initialized!\nTraining...\nEpoch 1: Loss 2.30, Acc 12%\nEpoch 5: Loss 0.85, Acc 68%\nEpoch 10: Loss 0.21, Acc 93%\n\n✅ Training complete!');
-                    setIsRunning(false);
-                }, 2000);
-            }, []);
-
-            return (
-                <div className="space-y-6 animate-fadeIn">
-                    <button onClick={() => setActiveSection('dashboard')} className="flex items-center space-x-2 text-gray-400 hover:text-white transition-all">
-                        <i className="lucide-arrow-left"></i>
-                        <span>Back to Dashboard</span>
-                    </button>
-
-                    <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 hover-glow transition-all">
-                        <h2 className="text-2xl sm:text-3xl font-bold mb-2">{selectedCourse.title}</h2>
-                        <p className="text-blue-100">Interactive coding lesson</p>
-                    </div>
-
-                    <div className="p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10 animate-slideIn">
-                        <h3 className="text-xl font-bold mb-4 flex items-center">
-                            <i className="lucide-code text-green-400 mr-2"></i>
-                            Interactive Code Editor
-                        </h3>
-                        <div className="rounded-xl overflow-hidden border border-white/10">
-                            <div className="bg-black/50 px-4 py-3 flex justify-between items-center border-b border-white/10 flex-wrap gap-2">
-                                <div className="flex items-center space-x-2">
-                                    <i className="lucide-terminal text-green-400"></i>
-                                    <span className="text-sm text-gray-400">neural_network.py</span>
-                                </div>
-                                <button
-                                    onClick={runCode}
-                                    disabled={isRunning}
-                                    className="px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 disabled:bg-gray-600 text-sm flex items-center space-x-2 transition-all hover-scale"
-                                >
-                                    <i className="lucide-play"></i>
-                                    <span>{isRunning ? 'Running...' : 'Run Code'}</span>
-                                </button>
-                            </div>
-                            <pre className="p-6 bg-black/30 text-sm text-gray-300 font-mono overflow-x-auto">
-{`import numpy as np
-
-class NeuralNetwork:
-    def __init__(self, layers):
-        self.layers = layers
-        print("Network initialized!")
-
-nn = NeuralNetwork([784, 128, 10])
-print("Ready to train!")`}
-                            </pre>
-                        </div>
-                        {codeOutput && (
-                            <div className="mt-4 p-4 rounded-xl bg-black/50 border border-green-500/30 animate-fadeIn">
-                                <div className="text-sm text-green-400 mb-2">Output:</div>
-                                <pre className="text-sm text-green-300 font-mono whitespace-pre-wrap">{codeOutput}</pre>
-                            </div>
-                        )}
-
-                        <div className="mt-4 p-4 rounded-xl bg-blue-500/10 border border-blue-500/30">
-                            <div className="flex items-start space-x-3">
-                                <i className="lucide-lightbulb text-blue-400 animate-pulse"></i>
-                                <div className="text-sm text-blue-100">
-                                    <strong>💡 Pro Tip:</strong> Try modifying the network architecture to see how it affects training!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        });
-
-        const ProgressSection = React.memo(() => (
-            <div className="space-y-6 animate-fadeIn">
-                <h2 className="text-2xl sm:text-3xl font-bold">Your Progress</h2>
-                <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
-                    <h3 className="text-xl font-bold mb-6 flex items-center">
-                        <i className="lucide-pie-chart text-purple-400 mr-2"></i>
-                        Skill Levels
-                    </h3>
-                    <div className="space-y-4">
-                        {skills.map((skill, i) => (
-                            <div key={i} className="animate-slideIn" style={{animationDelay: `${i * 0.1}s`}}>
-                                <div className="flex justify-between text-sm mb-2">
-                                    <span>{skill.name}</span>
-                                    <span className="text-blue-400 font-semibold">{skill.level}%</span>
-                                </div>
-                                <div className="h-3 bg-white/10 rounded-full overflow-hidden">
-                                    <div
-                                        className="h-full bg-gradient-to-r from-blue-600 to-purple-600 progress-bar transition-all duration-1000 ease-out"
-                                        style={{
-                                            width: `${skill.level}%`,
-                                            transitionDelay: `${i * 0.2}s`
-                                        }}
-                                    ></div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        ));
-
-        const Chat = React.memo(() => {
-            const [messages, setMessages] = useState([]);
+            ]);
             const [input, setInput] = useState('');
+            const [isLoading, setIsLoading] = useState(false);
             const chatRef = useRef(null);
 
-            const sendMessage = useCallback(debounce(() => {
+            const botResponses = {
+                'neural network': 'A neural network is a computational model inspired by biological neural networks. It consists of interconnected nodes (neurons) organized in layers. Each connection has a weight that gets adjusted during training to minimize error.',
+                'deep learning': 'Deep Learning is a subset of machine learning using neural networks with multiple layers. These "deep" networks can learn complex patterns in data. Popular architectures include CNNs, RNNs, and Transformers.',
+                'supervised learning': 'Supervised Learning is a training method where the model learns from labeled data. The training data contains input-output pairs. Common tasks include classification and regression.',
+                'unsupervised learning': 'Unsupervised Learning finds patterns in unlabeled data. The model isn\'t given explicit answers. Common techniques include clustering (K-means, DBSCAN) and dimensionality reduction (PCA).',
+                'nlp': 'NLP (Natural Language Processing) enables computers to understand and generate human language. Key tasks include text classification, sentiment analysis, machine translation, and question answering.',
+                'computer vision': 'Computer Vision allows machines to interpret visual information. It involves image classification, object detection, semantic segmentation, and more. CNNs are commonly used.',
+                'transformer': 'Transformers are neural network architectures based on self-attention mechanisms. They power modern NLP models like BERT and GPT. They excel at capturing long-range dependencies in sequences.',
+                'backpropagation': 'Backpropagation is the algorithm used to train neural networks. It computes gradients of the loss function with respect to network weights, enabling efficient learning.',
+                'loss function': 'A loss function measures how far predictions are from actual values. Common ones include Mean Squared Error (MSE) for regression and Cross-Entropy for classification. It guides model training.',
+                'activation function': 'Activation functions introduce non-linearity to neural networks. Common ones are ReLU, Sigmoid, and Tanh. They enable networks to learn complex patterns.',
+            };
+
+            const getBotResponse = (userMsg) => {
+                const lowerMsg = userMsg.toLowerCase();
+
+                for (const [key, response] of Object.entries(botResponses)) {
+                    if (lowerMsg.includes(key)) {
+                        return response;
+                    }
+                }
+
+                return 'That\'s a great question! Could you be more specific? Ask me about neural networks, supervised/unsupervised learning, NLP, computer vision, transformers, loss functions, activation functions, or backpropagation.';
+            };
+
+            const sendMessage = useCallback(() => {
                 if (!input.trim()) return;
-                setMessages(prev => [...prev,
-                    { role: 'user', content: input },
-                    { role: 'bot', content: 'I can help with that! Would you like theory, code, or examples?' }
-                ]);
+
+                const userMessage = input.trim();
+                setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
                 setInput('');
-            }, 300), [input]);
+                setIsLoading(true);
+
+                setTimeout(() => {
+                    const botResponse = getBotResponse(userMessage);
+                    setMessages(prev => [...prev, { role: 'bot', content: botResponse }]);
+                    setIsLoading(false);
+                }, 1000);
+            }, [input]);
 
             useEffect(() => {
                 if (chatRef.current) {
                     chatRef.current.scrollTop = chatRef.current.scrollHeight;
                 }
-            }, [messages]);
+            }, [messages, isLoading]);
 
             return (
-                <div className="max-w-4xl mx-auto animate-fadeIn">
-                    <div className="p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10" style={{ height: '600px', display: 'flex', flexDirection: 'column' }}>
-                        <div className="flex items-center space-x-3 mb-6 pb-4 border-b border-white/10">
-                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center animate-rotate">
-                                <i className="lucide-brain text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3 className="font-bold">AI ML Tutor</h3>
-                                <p className="text-sm text-gray-400">Ask anything about ML</p>
+                <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white flex flex-col">
+                    {/* Header */}
+                    <header className="border-b border-white/10 bg-black/30 backdrop-blur-xl sticky top-0 z-50 animate-slideIn">
+                        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4">
+                            <div className="flex items-center space-x-3">
+                                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center animate-rotate">
+                                    <i className="lucide-brain text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h1 className="text-lg sm:text-xl font-bold">ML Tutor Pro</h1>
+                                    <p className="text-xs text-gray-400 hidden sm:block">AI Learning Assistant</p>
+                                </div>
                             </div>
                         </div>
-                        <div ref={chatRef} className="flex-1 overflow-y-auto space-y-4 mb-4">
-                            {messages.length === 0 ? (
-                                <div className="text-center text-gray-400 mt-12">
-                                    <i className="lucide-message-square text-6xl mb-4 opacity-50"></i>
-                                    <p className="text-lg mb-2">Start a conversation</p>
-                                    <p className="text-sm">Ask about concepts, code, or best practices</p>
+                    </header>
+
+                    {/* Main Chat Area */}
+                    <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col">
+                        <div className="p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col h-full animate-fadeIn">
+                            {/* Chat Header */}
+                            <div className="flex items-center space-x-3 mb-6 pb-4 border-b border-white/10">
+                                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center animate-rotate">
+                                    <i className="lucide-brain text-2xl"></i>
                                 </div>
-                            ) : (
-                                messages.map((m, i) => (
-                                    <div
-                                        key={i}
-                                        className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-slideIn`}
-                                    >
-                                        <div className={`max-w-[70%] p-4 rounded-2xl ${m.role === 'user' ? 'bg-gradient-to-br from-blue-600 to-purple-600' : 'bg-white/10'} hover-scale`}>
-                                            {m.content}
+                                <div>
+                                    <h3 className="font-bold">AI ML Tutor</h3>
+                                    <p className="text-sm text-gray-400">Ask anything about Machine Learning</p>
+                                </div>
+                            </div>
+
+                            {/* Messages Area */}
+                            <div ref={chatRef} className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2">
+                                {messages.map((m, i) => (
+                                    <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-slideIn`}>
+                                        <div className={`max-w-xs sm:max-w-md lg:max-w-lg p-4 rounded-2xl ${m.role === 'user' ? 'bg-gradient-to-br from-blue-600 to-purple-600' : 'bg-white/10'} hover-scale`}>
+                                            <p className="text-sm sm:text-base">{m.content}</p>
                                         </div>
                                     </div>
-                                ))
-                            )}
-                        </div>
-                        <div className="flex space-x-3">
-                            <input
-                                type="text"
-                                value={input}
-                                onChange={(e) => setInput(e.target.value)}
-                                onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-                                placeholder="Ask a question..."
-                                className="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-blue-500 focus:outline-none text-white placeholder-gray-500 transition-all"
-                            />
-                            <button onClick={sendMessage} className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 transition-all hover-scale">
-                                Send
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            );
-        });
+                                ))}
+                                {isLoading && (
+                                    <div className="flex justify-start">
+                                        <div className="bg-white/10 p-4 rounded-2xl">
+                                            <div className="flex space-x-2">
+                                                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                                                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                                                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
 
-        const Profile = React.memo(() => (
-            <div className="max-w-4xl mx-auto space-y-6 animate-fadeIn">
-                <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 hover-glow transition-all">
-                    <div className="flex items-center space-x-6 flex-wrap gap-4">
-                        <div className="w-24 h-24 rounded-2xl bg-white/20 flex items-center justify-center text-4xl font-bold hover-scale">
-                            {userData.avatar}
-                        </div>
-                        <div>
-                            <h2 className="text-2xl sm:text-3xl font-bold mb-2">{userData.name}</h2>
-                            <p className="text-blue-100 mb-2">{userData.role}</p>
-                            <div className="flex items-center space-x-4 text-sm">
-                                <span className="px-3 py-1 rounded-full bg-white/20">Level {userData.completedLessons}</span>
+                            {/* Input Area */}
+                            <div className="flex space-x-3">
+                                <input
+                                    type="text"
+                                    value={input}
+                                    onChange={(e) => setInput(e.target.value)}
+                                    onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+                                    placeholder="Ask a question about ML..."
+                                    className="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-blue-500 focus:outline-none text-white placeholder-gray-500 transition-all text-sm sm:text-base"
+                                    disabled={isLoading}
+                                />
+                                <button
+                                    onClick={sendMessage}
+                                    disabled={isLoading || !input.trim()}
+                                    className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 disabled:opacity-50 transition-all hover-scale font-semibold flex items-center space-x-2"
+                                >
+                                    <i className="lucide-send text-lg"></i>
+                                </button>
+                            </div>
+
+                            {/* Help Text */}
+                            <div className="mt-4 p-3 rounded-lg bg-blue-500/10 border border-blue-500/30 text-xs sm:text-sm text-blue-100">
+                                <strong>💡 Try asking about:</strong> neural networks, deep learning, supervised/unsupervised learning, NLP, computer vision, transformers, loss functions, or backpropagation
                             </div>
                         </div>
-                    </div>
+                    </main>
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="p-6 rounded-2xl bg-white/5 border border-white/10 animate-slideIn">
-                        <h3 className="text-xl font-bold mb-4">Statistics</h3>
-                        <div className="space-y-3">
-                            {[
-                                { label: 'Points', value: userData.points, color: 'text-blue-400' },
-                                { label: 'Lessons', value: userData.completedLessons, color: 'text-purple-400' },
-                                { label: 'Streak', value: `${userData.streak} days`, color: 'text-orange-400' },
-                                { label: 'Study Time', value: `${userData.studyTime}h`, color: 'text-green-400' }
-                            ].map((stat, i) => (
-                                <div key={i} className="flex justify-between">
-                                    <span className="text-gray-400">{stat.label}</span>
-                                    <span className={`font-bold ${stat.color}`}>{stat.value}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="p-6 rounded-2xl bg-white/5 border border-white/10 animate-slideIn" style={{animationDelay: '0.2s'}}>
-                        <h3 className="text-xl font-bold mb-4">Certificates</h3>
-                        <div className="space-y-3">
-                            {['Python for ML', 'Deep Learning', 'Neural Networks'].map((cert, i) => (
-                                <div key={i} className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between hover-scale">
-                                    <span>{cert}</span>
-                                    <i className="lucide-trophy text-yellow-400"></i>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        ));
-
-        const MLTutorPro = () => {
-            const [isLoggedIn, setIsLoggedIn] = useState(false);
-            const [showLogin, setShowLogin] = useState(true);
-            const [activeSection, setActiveSection] = useState('dashboard');
-            const [selectedCourse, setSelectedCourse] = useState(null);
-            const [animateStats, setAnimateStats] = useState(false);
-            const [theme, setTheme] = useState('dark');
-
-            useEffect(() => {
-                if (activeSection === 'dashboard' && isLoggedIn) {
-                    setAnimateStats(true);
-                }
-            }, [activeSection, isLoggedIn]);
-
-            const toggleTheme = useCallback(() => {
-                setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-            }, []);
-
-            const handleLogin = useCallback(() => {
-                setIsLoggedIn(true);
-            }, []);
-
-            if (!isLoggedIn) {
-                return <LoginForm onLogin={handleLogin} isLogin={showLogin} />;
-            }
-
-            return (
-                <ThemeContext.Provider value={{ theme }}>
-                    <div className={`min-h-screen text-white ${theme === 'dark' ? 'bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900' : 'bg-gradient-to-br from-gray-100 via-blue-100 to-gray-100 text-black'}`}>
-                        <Header
-                            activeSection={activeSection}
-                            setActiveSection={setActiveSection}
-                            setIsLoggedIn={setIsLoggedIn}
-                            theme={theme}
-                            toggleTheme={toggleTheme}
-                        />
-                        <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-                            {activeSection === 'dashboard' && (
-                                <Dashboard
-                                    setActiveSection={setActiveSection}
-                                    setSelectedCourse={setSelectedCourse}
-                                    animateStats={animateStats}
-                                />
-                            )}
-                            {activeSection === 'learning' && selectedCourse && (
-                                <Learning selectedCourse={selectedCourse} setActiveSection={setActiveSection} />
-                            )}
-                            {activeSection === 'progress' && <ProgressSection />}
-                            {activeSection === 'chat' && <Chat />}
-                            {activeSection === 'profile' && <Profile />}
-                        </main>
-                    </div>
-                </ThemeContext.Provider>
             );
         };
 
-        const App = () => <MLTutorPro />;
+        const App = () => <MLTutorChat />;
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
+    {% endraw %}
     </script>
 </body>
 </html>
